@@ -60,7 +60,7 @@ class ExtensionRepository extends BaseRepository
             ->rightJoin('mm', 'tx_t3monitoring_domain_model_client', 'client', 'mm.uid_local=client.uid')
             ->where($expressionBuilder->isNotNull('ext.name'))
             ->andWhere($expressionBuilder->eq('client.hidden', 0))
-            ->andWhere($expressionBuilder->eq('client.deleted',0))
+            ->andWhere($expressionBuilder->eq('client.deleted', 0))
             ->orderBy('ext.name', 'ASC')
             ->orderBy('ext.version_integer', 'DESC')
             ->orderBy('client.title', 'ASC');
