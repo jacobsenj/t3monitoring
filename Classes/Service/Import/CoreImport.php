@@ -45,7 +45,6 @@ class CoreImport extends BaseImport
             ->from($table)
             ->execute()
             ->fetchAll();
-
         $previousCoreVersions = [];
         foreach ($rows as $row) {
             $previousCoreVersions[$row['version']] = $row;
