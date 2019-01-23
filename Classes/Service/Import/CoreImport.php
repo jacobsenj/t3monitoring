@@ -64,10 +64,7 @@ class CoreImport extends BaseImport
                 if (isset($previousCoreVersions[$version])) {
                     $connection->update(
                         $table,
-                        [
-                            'tstamp' => $GLOBALS['EXEC_TIME'],
-                            'pid' => $this->emConfiguration->getPid()
-                        ],
+                        $item,
                         [
                             'uid' => $previousCoreVersions[$version]['uid']
                         ]
