@@ -160,7 +160,8 @@ class DataIntegrity
         $queryBuilder = $connection->createQueryBuilder();
         $queryBuilder->update($table)
             ->set('is_latest', 1)
-            ->where('version=last_major_release');
+            ->where('version=last_major_release')
+            ->execute();
     }
 
     /**
