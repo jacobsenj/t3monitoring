@@ -378,10 +378,12 @@
                                                         <td class="text-nowrap">
                                                             <f:if condition="{client.tag}">
                                                                 <f:then>
-                                                                    <f:link.action action="show" controller="Tag"
-                                                                                   arguments="{tag:client.tag}">
-                                                                        {client.tag.title}
-                                                                    </f:link.action>
+                                                                    <f:for each="{client.tag}" as="single_tag" iteration="iter">
+                                                                        <f:link.action action="show" controller="Tag"
+                                                                                       arguments="{tag:single_tag}">
+                                                                            {single_tag.title}<f:if condition="!{iter.isLast}">,</f:if>
+                                                                        </f:link.action>
+                                                                    </f:for>
                                                                 </f:then>
                                                                 <f:else>-</f:else>
                                                             </f:if>

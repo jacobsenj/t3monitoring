@@ -119,15 +119,13 @@ return [
             'exclude' => true,
             'label' => 'LLL:EXT:t3monitoring/Resources/Private/Language/locallang.xlf:tx_t3monitoring_domain_model_client.tag',
             'config' => [
+                'enableMultiSelectFilterTextfield' => 1,
                 'type' => 'select',
-                'renderType' => 'selectSingle',
+                'default' => '',
+                'renderType' => 'selectMultipleSideBySide',
                 'foreign_table' => 'tx_t3monitoring_domain_model_tag',
                 'minitems' => 0,
-                'maxitems' => 1,
-                'default' => 0,
-                'items' => [
-                    ['', 0]
-                ]
+                'maxitems' => 10,
             ],
         ],
         'php_version' => [

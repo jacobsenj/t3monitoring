@@ -134,7 +134,7 @@ class Client extends AbstractEntity
     protected $sla = null;
 
     /**
-     * @var \T3Monitor\T3monitoring\Domain\Model\Tag
+     * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\T3Monitor\T3monitoring\Domain\Model\Tag>
      * @lazy
      */
     protected $tag = null;

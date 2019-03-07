@@ -211,7 +211,7 @@
 				<source>Description</source>
 			</trans-unit>
 			<trans-unit id="tx_t3monitoring_domain_model_tag">
-				<source>Tag</source>
+				<source>Tags</source>
 			</trans-unit>
 			<trans-unit id="tx_t3monitoring_domain_model_tag.title">
 				<source>Title</source>
