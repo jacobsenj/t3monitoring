@@ -9,6 +9,7 @@ namespace T3Monitor\T3monitoring\Domain\Model;
  */
 
 use TYPO3\CMS\Extbase\DomainObject\AbstractEntity;
+use TYPO3\CMS\Extbase\Persistence\Generic\LazyLoadingProxy;
 use TYPO3\CMS\Extbase\Persistence\ObjectStorage;
 
 /**
@@ -599,7 +600,7 @@ class Client extends AbstractEntity
      */
     public function getExtensions()
     {
-        return $this->extensions;
+        return ($this->extensions instanceof LazyLoadingProxy ? $this->extensions->_loadRealInstance() : $this->extensions);
     }
 
     /**
@@ -620,7 +621,7 @@ class Client extends AbstractEntity
      */
     public function getCore()
     {
-        return $this->core;
+        return ($this->core instanceof LazyLoadingProxy ? $this->core->_loadRealInstance() : $this->core);
     }
 
     /**
@@ -641,7 +642,7 @@ class Client extends AbstractEntity
      */
     public function getSla()
     {
-        return $this->sla;
+        return ($this->sla instanceof LazyLoadingProxy ? $this->sla->_loadRealInstance() : $this->sla);
     }
 
     /**
@@ -662,7 +663,7 @@ class Client extends AbstractEntity
      */
     public function getTag()
     {
-        return $this->tag;
+        return ($this->tag instanceof LazyLoadingProxy ? $this->tag->_loadRealInstance() : $this->tag);
     }
 
     /**
