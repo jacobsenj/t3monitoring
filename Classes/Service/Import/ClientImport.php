@@ -252,6 +252,7 @@ class ClientImport extends BaseImport
                 $relationId = $found['uid'];
             } else {
                 $insert = [
+                    'crdate' => $GLOBALS['EXEC_TIME'],
                     'pid' => $this->emConfiguration->getPid(),
                     'name' => $key,
                     'version' => (string)$data['version'],
