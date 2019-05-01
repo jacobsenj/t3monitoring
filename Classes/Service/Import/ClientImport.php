@@ -268,6 +268,7 @@ class ClientImport extends BaseImport
                     'category' => (int)array_search($data['category'], Extension::$defaultCategories),
                     'is_official' => 0,
                     'tstamp' => $GLOBALS['EXEC_TIME'],
+                    'serialized_dependencies' => $this->serializeDependencies($data['constraints']),
                 ];
 
                 $connection = $this->getConnectionTableFor($table);
@@ -291,6 +292,20 @@ class ClientImport extends BaseImport
         }
 
         return count($extensions);
+    }
+
+    /**
+     * @param array $constraints
+     * @return string|null
+     */
+    protected function serializeDependencies(array $constraints)
+    {
+        foreach ($constraints as $key => $constraint) {
+            if (!is_array($constraint) || $constraint === []) {
+                unset($constraints[$key]);
+            }
+        }
+        return $constraints !== [] ? serialize($constraints) : null;
     }
 
     /**
