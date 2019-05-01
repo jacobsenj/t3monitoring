@@ -259,6 +259,7 @@ class ClientImport extends BaseImport
                     'title' => (string)$data['title'],
                     'description' => (string)$data['description'],
                     'state' => array_search($data['state'], Extension::$defaultStates, true),
+                    'category' => (int)array_search($data['category'], Extension::$defaultCategories),
                     'is_official' => 0,
                     'tstamp' => $GLOBALS['EXEC_TIME'],
                 ];
