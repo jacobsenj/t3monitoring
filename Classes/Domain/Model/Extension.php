@@ -32,7 +32,6 @@ class Extension extends AbstractEntity
         999 => 'n/a'
     ];
 
-
     /**
      * Contains default categories.
      *
