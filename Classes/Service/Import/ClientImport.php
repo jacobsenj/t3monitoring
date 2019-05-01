@@ -244,7 +244,7 @@ class ClientImport extends BaseImport
             foreach ($existingExtensions as $existingExtension) {
                 if ($existingExtension['name'] === $key && $existingExtension['version'] === $data['version']) {
                     $found = $existingExtension;
-                    continue;
+                    break;
                 }
             }
 
