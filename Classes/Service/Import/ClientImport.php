@@ -251,14 +251,19 @@ class ClientImport extends BaseImport
             if ($found) {
                 $relationId = $found['uid'];
             } else {
+                $versionSplit = explode('.', $data['version'], 3);
+
                 $insert = [
                     'crdate' => $GLOBALS['EXEC_TIME'],
                     'pid' => $this->emConfiguration->getPid(),
                     'name' => $key,
                     'version' => (string)$data['version'],
                     'version_integer' => VersionNumberUtility::convertVersionNumberToInteger($data['version']),
+                    'major_version' => (int)$versionSplit[0],
+                    'minor_version' => (int)$versionSplit[1],
                     'title' => (string)$data['title'],
                     'description' => (string)$data['description'],
+                    'author_name' => (string)$data['author'],
                     'state' => array_search($data['state'], Extension::$defaultStates, true),
                     'category' => (int)array_search($data['category'], Extension::$defaultCategories),
                     'is_official' => 0,
