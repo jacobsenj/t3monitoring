@@ -244,23 +244,31 @@ class ClientImport extends BaseImport
             foreach ($existingExtensions as $existingExtension) {
                 if ($existingExtension['name'] === $key && $existingExtension['version'] === $data['version']) {
                     $found = $existingExtension;
-                    continue;
+                    break;
                 }
             }
 
             if ($found) {
                 $relationId = $found['uid'];
             } else {
+                $versionSplit = explode('.', $data['version'], 3);
+
                 $insert = [
+                    'crdate' => $GLOBALS['EXEC_TIME'],
                     'pid' => $this->emConfiguration->getPid(),
                     'name' => $key,
                     'version' => (string)$data['version'],
                     'version_integer' => VersionNumberUtility::convertVersionNumberToInteger($data['version']),
+                    'major_version' => (int)$versionSplit[0],
+                    'minor_version' => (int)$versionSplit[1],
                     'title' => (string)$data['title'],
                     'description' => (string)$data['description'],
+                    'author_name' => (string)$data['author'],
                     'state' => array_search($data['state'], Extension::$defaultStates, true),
+                    'category' => (int)array_search($data['category'], Extension::$defaultCategories),
                     'is_official' => 0,
                     'tstamp' => $GLOBALS['EXEC_TIME'],
+                    'serialized_dependencies' => $this->serializeDependencies($data['constraints']),
                 ];
 
                 $connection = $this->getConnectionTableFor($table);
@@ -284,6 +292,20 @@ class ClientImport extends BaseImport
         }
 
         return count($extensions);
+    }
+
+    /**
+     * @param array $constraints
+     * @return string|null
+     */
+    protected function serializeDependencies(array $constraints)
+    {
+        foreach ($constraints as $key => $constraint) {
+            if (!is_array($constraint) || $constraint === []) {
+                unset($constraints[$key]);
+            }
+        }
+        return $constraints !== [] ? serialize($constraints) : null;
     }
 
     /**

@@ -33,6 +33,24 @@ class Extension extends AbstractEntity
     ];
 
     /**
+     * Contains default categories.
+     *
+     * @var array
+     */
+    public static $defaultCategories = [
+        0 => 'be',
+        1 => 'module',
+        2 => 'fe',
+        3 => 'plugin',
+        4 => 'misc',
+        5 => 'services',
+        6 => 'templates',
+        8 => 'doc',
+        9 => 'example',
+        10 => 'distribution'
+    ];
+
+    /**
      * @var string
      * @validate NotEmpty
      */
