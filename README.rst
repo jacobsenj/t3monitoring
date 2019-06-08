@@ -52,7 +52,7 @@ Screenshots
 How to start
 ------------
 Before you can actually monitor any installation, you need to install the extension *t3monitoring_client* on every installation (called "client").
-This extension provides the day which will be fetched by the master installation. You can find this extension on github (https://github.com/georgringer/t3monitoring_client) or later in the TER.
+This extension provides the data which will be fetched by the master installation. You can find this extension on github (https://github.com/georgringer/t3monitoring_client) or later in the TER.
 
 .. important:: Please secure the installation as much as possible, as it contains data of all your clients. Restrict access by running it in your intranet only, or at least use a *Basic HTTP Authentication*.
 
