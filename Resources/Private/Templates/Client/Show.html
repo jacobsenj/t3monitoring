@@ -60,7 +60,9 @@
 						<tr>
 							<th><i class="fa fa-tags fa-fw"></i> {f:translate(key:'tx_t3monitoring_domain_model_tag')}</th>
 							<td>
-								<f:link.action action="show" controller="Tag" arguments="{tag:client.tag}">{client.tag.title}</f:link.action>
+								<f:for each="{client.tag}" as="single_tag" iteration="iter">
+									<f:link.action action="show" controller="Tag" arguments="{tag:single_tag}">{single_tag.title}<f:if condition="!{iter.isLast}">,</f:if></f:link.action>
+								</f:for>
 							</td>
 						</tr>
 					</f:if>
@@ -123,6 +125,7 @@
 					<th>{f:translate(key:'found.in.ter')}</th>
 				</tr>
 				</thead>
+
 				<f:for each="{client.extensions}" as="extension">
 
 					<monitor:additionalExtensionData as="extra" client="{client.uid}" extension="{extension.uid}">
@@ -132,7 +135,9 @@
 									<f:link.action action="show" controller="Extension" arguments="{extension:'{extension.name}'}">{extension.name}</f:link.action>
 								</span>
 							</td>
-							<td>{extension.version}</td>
+							<td>
+								<span class="badge" data-toggle="tooltip" data-title='<div class="dep"><div class="panel panel-default"><div class="panel-heading">{extension.version} release</div>{extension.serializedDependencies -> monitor:format.dependencies()}</div></div>' data-html="true">{extension.version}</span>
+							</td>
 							<td>
 								<span class="label label-{extension.state -> monitor:format.extensionState()}">{extension.state -> monitor:format.extensionState()}</span>
 							</td>

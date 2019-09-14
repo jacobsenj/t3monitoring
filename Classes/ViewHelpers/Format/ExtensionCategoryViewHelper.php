@@ -9,15 +9,15 @@ namespace T3Monitor\T3monitoring\ViewHelpers\Format;
  * LICENSE.txt file that was distributed with this source code.
  */
 
-use TYPO3\CMS\Fluid\Core\Rendering\RenderingContextInterface;
-use TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper;
-use TYPO3\CMS\Fluid\Core\ViewHelper\Facets\CompilableInterface;
+use T3Monitor\T3monitoring\Domain\Model\Extension;
+use TYPO3Fluid\Fluid\Core\Rendering\RenderingContextInterface;
+use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper;
 use TYPO3Fluid\Fluid\Core\ViewHelper\Traits\CompileWithRenderStatic;
 
 /**
  * Class ExtensionCategoryViewHelper
  */
-class ExtensionCategoryViewHelper extends AbstractViewHelper implements CompilableInterface
+class ExtensionCategoryViewHelper extends AbstractViewHelper
 {
     use CompileWithRenderStatic;
 
@@ -36,27 +36,9 @@ class ExtensionCategoryViewHelper extends AbstractViewHelper implements Compilab
     {
         $category = $arguments['category'] ?: $renderChildrenClosure();
         $categoryString = '';
-        if (isset(self::$defaultCategories[$category])) {
-            $categoryString = self::$defaultCategories[$category];
+        if (isset(Extension::$defaultCategories[$category])) {
+            $categoryString = Extension::$defaultCategories[$category];
         }
         return $categoryString;
     }
-
-    /**
-     * Contains default categories.
-     *
-     * @var array
-     */
-    private static $defaultCategories = [
-        0 => 'be',
-        1 => 'module',
-        2 => 'fe',
-        3 => 'plugin',
-        4 => 'misc',
-        5 => 'services',
-        6 => 'templates',
-        8 => 'doc',
-        9 => 'example',
-        10 => 'distribution'
-    ];
 }

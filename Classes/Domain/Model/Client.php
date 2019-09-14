@@ -9,6 +9,7 @@ namespace T3Monitor\T3monitoring\Domain\Model;
  */
 
 use TYPO3\CMS\Extbase\DomainObject\AbstractEntity;
+use TYPO3\CMS\Extbase\Persistence\Generic\LazyLoadingProxy;
 use TYPO3\CMS\Extbase\Persistence\ObjectStorage;
 
 /**
@@ -28,6 +29,21 @@ class Client extends AbstractEntity
      * @validate NotEmpty
      */
     protected $domain = '';
+
+    /**
+     * @var string
+     */
+    protected $hostHeader = '';
+
+    /**
+     * @var bool
+     */
+    protected $ignoreCertErrors = false;
+
+    /**
+     * @var string
+     */
+    protected $forceIpResolve = '';
 
     /**
      * @var string
@@ -134,7 +150,7 @@ class Client extends AbstractEntity
     protected $sla = null;
 
     /**
-     * @var \T3Monitor\T3monitoring\Domain\Model\Tag
+     * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\T3Monitor\T3monitoring\Domain\Model\Tag>
      * @lazy
      */
     protected $tag = null;
@@ -233,6 +249,54 @@ class Client extends AbstractEntity
     public function setBasicAuthPassword($basicAuthPassword)
     {
         $this->basicAuthPassword = $basicAuthPassword;
+    }
+
+    /**
+     * @return string
+     */
+    public function getHostHeader()
+    {
+        return $this->hostHeader;
+    }
+
+    /**
+     * @param string $hostHeader
+     */
+    public function setHostHeader(string $hostHeader)
+    {
+        $this->hostHeader = $hostHeader;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isIgnoreCertErrors()
+    {
+        return $this->ignoreCertErrors;
+    }
+
+    /**
+     * @param bool $ignoreCertErrors
+     */
+    public function setIgnoreCertErrors(bool $ignoreCertErrors)
+    {
+        $this->ignoreCertErrors = $ignoreCertErrors;
+    }
+
+    /**
+     * @return string
+     */
+    public function getForceIpResolve()
+    {
+        return $this->forceIpResolve;
+    }
+
+    /**
+     * @param string $forceIpResolve
+     */
+    public function setForceIpResolve(string $forceIpResolve)
+    {
+        $this->forceIpResolve = $forceIpResolve;
     }
 
     /**
@@ -599,7 +663,7 @@ class Client extends AbstractEntity
      */
     public function getExtensions()
     {
-        return $this->extensions;
+        return $this->extensions instanceof LazyLoadingProxy ? $this->extensions->_loadRealInstance() : $this->extensions;
     }
 
     /**
@@ -620,7 +684,7 @@ class Client extends AbstractEntity
      */
     public function getCore()
     {
-        return $this->core;
+        return $this->core instanceof LazyLoadingProxy ? $this->core->_loadRealInstance() : $this->core;
     }
 
     /**
@@ -641,7 +705,7 @@ class Client extends AbstractEntity
      */
     public function getSla()
     {
-        return $this->sla;
+        return $this->sla instanceof LazyLoadingProxy ? $this->sla->_loadRealInstance() : $this->sla;
     }
 
     /**
@@ -662,7 +726,7 @@ class Client extends AbstractEntity
      */
     public function getTag()
     {
-        return $this->tag;
+        return $this->tag instanceof LazyLoadingProxy ? $this->tag->_loadRealInstance() : $this->tag;
     }
 
     /**

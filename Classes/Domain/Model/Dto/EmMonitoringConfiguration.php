@@ -33,7 +33,7 @@ class EmMonitoringConfiguration implements SingletonInterface
     protected $ipHint = '';
 
     /** @var string */
-    protected $emailForFailedClient;
+    protected $emailForFailedClient = '';
 
     public function __construct()
     {
