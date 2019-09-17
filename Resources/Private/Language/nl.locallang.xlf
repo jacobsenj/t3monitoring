@@ -559,10 +559,6 @@
 				<source>http://*********.***</source>
 				<target>http://*********.***</target>
 			</trans-unit>
-			<trans-unit id="emConfiguration.link">
-				<source>Configuration</source>
-				<target>Configuratie</target>
-			</trans-unit>
 			<trans-unit id="noInsecureClients">
 				<source>No insecure clients found!</source>
 				<target>Geen onveilige klanten gevonden!</target>

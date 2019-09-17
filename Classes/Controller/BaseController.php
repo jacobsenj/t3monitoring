@@ -205,21 +205,6 @@ class BaseController extends ActionController
                     Icon::SIZE_SMALL));
             $buttonBar->addButton($downloadClientDataButton, ButtonBar::BUTTON_POSITION_LEFT);
         }
-
-        // Configuration
-        $configurationLink = BackendUtility::getModuleUrl('tools_ExtensionmanagerExtensionmanager', [
-            'tx_extensionmanager_tools_extensionmanagerextensionmanager' => [
-                'action' => 'showConfigurationForm',
-                'controller' => 'Configuration',
-                'extension' => ['key' => 't3monitoring']
-            ]
-        ]);
-        $configurationButton = $buttonBar->makeLinkButton()
-            ->setHref($configurationLink . '&returnUrl=' . $returnUrl)
-            ->setTitle($this->getLabel('emConfiguration.link'))
-            ->setIcon($this->view->getModuleTemplate()->getIconFactory()->getIcon('actions-system-extension-configure',
-                Icon::SIZE_SMALL));
-        $buttonBar->addButton($configurationButton, ButtonBar::BUTTON_POSITION_RIGHT);
     }
 
     /**
