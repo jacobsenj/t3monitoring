@@ -12,7 +12,7 @@ return [
             'disabled' => 'hidden',
         ],
         'searchFields' => 'title,description,',
-        'iconfile' => 'EXT:t3monitoring/Resources/Public/Icons/tx_t3monitoring_domain_model_tag.gif'
+        'iconfile' => 'EXT:t3monitoring/Resources/Public/Icons/tx_t3monitoring_domain_model_tag.svg'
     ],
     'interface' => [
         'showRecordFieldList' => 'hidden, title, description',
