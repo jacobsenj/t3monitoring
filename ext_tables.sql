@@ -73,6 +73,8 @@ CREATE TABLE tx_t3monitoring_domain_model_extension (
 	last_bugfix_release varchar(255) DEFAULT '' NOT NULL,
 	last_minor_release varchar(255) DEFAULT '' NOT NULL,
 	last_major_release varchar(255) DEFAULT '' NOT NULL,
+	typo3_min_version int(11) unsigned DEFAULT '0' NOT NULL,
+	typo3_max_version int(11) unsigned DEFAULT '0' NOT NULL,
 	serialized_dependencies text,
 
 	tstamp int(11) unsigned DEFAULT '0' NOT NULL,

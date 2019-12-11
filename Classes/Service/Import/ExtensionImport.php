@@ -13,6 +13,7 @@ use InvalidArgumentException;
 use T3Monitor\T3monitoring\Service\DataIntegrity;
 use TYPO3\CMS\Core\Database\ConnectionPool;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Core\Utility\VersionNumberUtility;
 use TYPO3\CMS\Extensionmanager\Exception\ExtensionManagerException;
 use TYPO3\CMS\Extensionmanager\Utility\Repository\Helper;
 
@@ -82,6 +83,8 @@ class ExtensionImport extends BaseImport
                 'tstamp' => $GLOBALS['EXEC_TIME'],
             ];
 
+            $this->addCoreDependenciesToFields($fields);
+
             $exists = $queryBuilder
                 ->select('uid', 'version', 'name')
                 ->from($table)
@@ -108,6 +111,23 @@ class ExtensionImport extends BaseImport
                 $connection->insert($table, $fields);
             }
         }
+    }
+
+    protected function addCoreDependenciesToFields(array &$fields)
+    {
+        $fields['typo3_min_version'] = 0;
+        $fields['typo3_max_version'] = 0;
+        if (!$fields['serialized_dependencies']) {
+            return;
+        }
+        $dependencies = unserialize($fields['serialized_dependencies']);
+        if (!is_array($dependencies) || !is_array($dependencies['depends']) || !isset($dependencies['depends']['typo3'])) {
+            return;
+        }
+
+        $split = VersionNumberUtility::splitVersionRange($dependencies['depends']['typo3']);
+        $fields['typo3_min_version'] = VersionNumberUtility::convertVersionNumberToInteger($split[0]);
+        $fields['typo3_max_version'] = VersionNumberUtility::convertVersionNumberToInteger($split[1]);
     }
 
     /**

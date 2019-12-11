@@ -151,6 +151,12 @@ class Extension extends AbstractEntity
      */
     protected $serializedDependencies = '';
 
+    /** @var int */
+    protected $typo3MinVersion = 0;
+
+    /** @var int */
+    protected $typo3MaxVersion = 0;
+
     /**
      * Returns the name
      *
@@ -619,5 +625,37 @@ class Extension extends AbstractEntity
     public function setSerializedDependencies($serializedDependencies)
     {
         $this->serializedDependencies = $serializedDependencies;
+    }
+
+    /**
+     * @return int
+     */
+    public function getTypo3MinVersion()
+    {
+        return $this->typo3MinVersion;
+    }
+
+    /**
+     * @param int $typo3MinVersion
+     */
+    public function setTypo3MinVersion($typo3MinVersion)
+    {
+        $this->typo3MinVersion = $typo3MinVersion;
+    }
+
+    /**
+     * @return int
+     */
+    public function getTypo3MaxVersion()
+    {
+        return $this->typo3MaxVersion;
+    }
+
+    /**
+     * @param int $typo3MaxVersion
+     */
+    public function setTypo3MaxVersion($typo3MaxVersion)
+    {
+        $this->typo3MaxVersion = $typo3MaxVersion;
     }
 }

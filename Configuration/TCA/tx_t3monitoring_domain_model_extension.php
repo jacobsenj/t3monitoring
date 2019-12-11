@@ -18,7 +18,7 @@ return [
         'showRecordFieldList' => 'name, version, insecure, next_secure_version, title, description, last_updated, author_name, update_comment, state, category, version_integer, is_used, is_official, is_modified, is_latest, last_bugfix_release, last_minor_release, last_major_release, serialized_dependencies',
     ],
     'types' => [
-        '1' => ['showitem' => 'name, version, insecure, next_secure_version, title, description, last_updated, author_name, update_comment, state, category, version_integer, is_used, is_official, is_modified, is_latest,last_bugfix_release, last_minor_release, last_major_release, serialized_dependencies'],
+        '1' => ['showitem' => 'name, version, insecure, next_secure_version, title, description, last_updated, author_name, update_comment, state, category, version_integer, is_used, is_official, is_modified, is_latest,last_bugfix_release, last_minor_release, last_major_release, typo3_min_version,typo3_max_version,serialized_dependencies'],
     ],
     'palettes' => [
         '1' => ['showitem' => ''],
@@ -193,6 +193,22 @@ return [
                 'rows' => 15,
                 'eval' => 'trim'
             ]
+        ],
+        'typo3_min_version' => [
+            'label' => 'LLL:EXT:t3monitoring/Resources/Private/Language/locallang.xlf:tx_t3monitoring_domain_model_extension.typo3_min_version',
+            'config' => [
+                'type' => 'input',
+                'size' => 30,
+                'eval' => 'trim'
+            ],
+        ],
+        'typo3_max_version' => [
+            'label' => 'LLL:EXT:t3monitoring/Resources/Private/Language/locallang.xlf:tx_t3monitoring_domain_model_extension.typo3_max_version',
+            'config' => [
+                'type' => 'input',
+                'size' => 30,
+                'eval' => 'trim'
+            ],
         ],
     ],
 ];

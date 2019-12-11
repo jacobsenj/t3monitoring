@@ -159,6 +159,12 @@
 			<trans-unit id="tx_t3monitoring_domain_model_extension.serialized_dependencies">
 				<source>Serialized Dependencies</source>
 			</trans-unit>
+			<trans-unit id="tx_t3monitoring_domain_model_extension.typo3_min_version">
+				<source>TYPO3 minimum version</source>
+			</trans-unit>
+			<trans-unit id="tx_t3monitoring_domain_model_extension.typo3_max_version">
+				<source>TYPO3 maximum version</source>
+			</trans-unit>
 			<trans-unit id="tx_t3monitoring_domain_model_core">
 				<source>Core</source>
 			</trans-unit>

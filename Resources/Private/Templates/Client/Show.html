@@ -155,10 +155,17 @@
 										</f:if>
 									</f:then>
 									<f:else>
-										<monitor:availableUpdates extension="{extension}" as="list">
+										<monitor:availableUpdates core="{client.core}" extension="{extension}" as="list">
 											<f:if condition="{list}">
 												<f:for each="{list}" as="version">
-													<span class="badge" data-toggle="tooltip" data-title='<div class="dep"><div class="panel panel-default"><div class="panel-heading">{version.name} release</div>{version.serializedDependencies -> monitor:format.dependencies()}</div></div>' data-html="true">{version.version}</span>
+													<span class="badge" data-toggle="tooltip" data-title='<div class="dep"><div class="panel panel-default"><div class="panel-heading">{version.name} release</div>{version.serializedDependencies -> monitor:format.dependencies()}</div></div>' data-html="true">
+														{version.version}
+														<f:switch expression="{version.extCompatibility}">
+															<f:case value="-1"><core:icon identifier="actions-system-help-open" alternativeMarkupIdentifier="inline" /></f:case>
+															<f:case value="0"><core:icon identifier="actions-close" alternativeMarkupIdentifier="inline" /></f:case>
+															<f:case value="1"><core:icon identifier="actions-check" alternativeMarkupIdentifier="inline" /></f:case>
+														</f:switch>
+													</span>
 												</f:for>
 											</f:if>
 										</monitor:availableUpdates>
