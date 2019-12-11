@@ -18,7 +18,12 @@ define([
 
         $('.dependency-toggle-js').click(function () {
             $('.dependency-info-js').hide();
-            $('#' + $(this).attr('data-toggle')).toggle();
+
+            if (!$(this).hasClass('active')) {
+                $('#' + $(this).attr('data-toggle')).toggle();
+            }
+
+            $(this).toggleClass('active');
         });
 
         var clientList = $('.client-list');
