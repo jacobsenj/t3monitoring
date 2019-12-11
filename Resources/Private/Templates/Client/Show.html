@@ -158,14 +158,16 @@
 										<monitor:availableUpdates core="{client.core}" extension="{extension}" as="list">
 											<f:if condition="{list}">
 												<f:for each="{list}" as="version">
-													<span class="badge" data-toggle="tooltip" data-title='<div class="dep"><div class="panel panel-default"><div class="panel-heading">{version.name} release</div>{version.serializedDependencies -> monitor:format.dependencies()}</div></div>' data-html="true">
+													<button type="button" class="btn btn-default dependency-toggle-js" data-toggle="{version.identifier}">
 														{version.version}
 														<f:switch expression="{version.extCompatibility}">
-															<f:case value="-1"><core:icon identifier="actions-system-help-open" alternativeMarkupIdentifier="inline" /></f:case>
-															<f:case value="0"><core:icon identifier="actions-close" alternativeMarkupIdentifier="inline" /></f:case>
-															<f:case value="1"><core:icon identifier="actions-check" alternativeMarkupIdentifier="inline" /></f:case>
+														<f:case value="-1"><span class="label label-default"><core:icon identifier="actions-system-help-open" /></span></f:case>
+														<f:case value="0"><span class="label label-warning"><core:icon identifier="actions-close" /></span></f:case>
+														<f:case value="1"><span class="label label-success"><core:icon identifier="actions-check" /></span></f:case>
 														</f:switch>
-													</span>
+
+													</button>
+													<div class="dependency-info-js" id="{version.identifier}" style="display: none"><div class="panel panel-default"><div class="panel-heading">{version.name} release</div>{version.serializedDependencies -> monitor:format.dependencies()}</div></div>
 												</f:for>
 											</f:if>
 										</monitor:availableUpdates>

@@ -6,38 +6,45 @@
  */
 
 define([
-	'jquery',
-	'TYPO3/CMS/Backend/Modal',
-	'TYPO3/CMS/Backend/Tooltip',
-	'datatables'
+    'jquery',
+    'TYPO3/CMS/Backend/Modal',
+    'TYPO3/CMS/Backend/Tooltip',
+    'datatables'
 ], function ($, Modal, Tooltip) {
-	'use strict';
+    'use strict';
 
-	$(document).ready(function () {
-		var clientList = $('.client-list');
-		if (clientList.length > 0) {
-			clientList.DataTable({
-				"order": [[0, "desc"]],
-				paging: false,
-				lengthChange: false,
-				stateSave: true,
-				searching: false,
-				dom: 'tir',
-				ordering: true
-			});
-		}
-		var extensionList = $('.extension-list');
-		if (extensionList.length > 0) {
-				extensionList.DataTable({
-				"order": [[5, "asc"], [6, "asc"]],
-				paging: false,
-				lengthChange: false,
-				stateSave: false,
-				searching: false,
-				dom: 'tir',
-				ordering: true
-			});
-		}
-	});
+    $(document).ready(function () {
+
+
+        $('.dependency-toggle-js').click(function () {
+            $('.dependency-info-js').hide();
+            $('#' + $(this).attr('data-toggle')).toggle();
+        });
+
+        var clientList = $('.client-list');
+        if (clientList.length > 0) {
+            clientList.DataTable({
+                "order": [[0, "desc"]],
+                paging: false,
+                lengthChange: false,
+                stateSave: true,
+                searching: false,
+                dom: 'tir',
+                ordering: true
+            });
+        }
+        var extensionList = $('.extension-list');
+        if (extensionList.length > 0) {
+            extensionList.DataTable({
+                "order": [[5, "asc"], [6, "asc"]],
+                paging: false,
+                lengthChange: false,
+                stateSave: false,
+                searching: false,
+                dom: 'tir',
+                ordering: true
+            });
+        }
+    });
 
 });
