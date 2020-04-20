@@ -9,31 +9,31 @@ namespace T3Monitor\T3monitoring\Tests\Unit\Notification;
  */
 
 use T3Monitor\T3monitoring\Notification\EmailNotification;
-use TYPO3\CMS\Core\Tests\UnitTestCase;
-use UnexpectedValueException;
+use TYPO3\TestingFramework\Core\Unit\UnitTestCase;
 
 /**
  * Class EmailNotificationTest
  */
 class EmailNotificationTest extends UnitTestCase
 {
+    protected $resetSingletonInstances = true;
 
     /**
      * @test
-     * @expectedException UnexpectedValueException
      */
     public function sendAdminEmailThrowsExceptionForInvalidEmailAddress()
     {
+        $this->expectException(\UnexpectedValueException::class);
         $notification = new EmailNotification();
         $notification->sendAdminEmail('invalid', ['client']);
     }
 
     /**
      * @test
-     * @expectedException UnexpectedValueException
      */
     public function sendAdminEmailThrowsExceptionForNoClients()
     {
+        $this->expectException(\UnexpectedValueException::class);
         $notification = new EmailNotification();
         $notification->sendAdminEmail('john@doe.com', []);
     }
