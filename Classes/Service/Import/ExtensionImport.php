@@ -12,11 +12,9 @@ namespace T3Monitor\T3monitoring\Service\Import;
 use InvalidArgumentException;
 use T3Monitor\T3monitoring\Service\DataIntegrity;
 use TYPO3\CMS\Core\Database\ConnectionPool;
-use TYPO3\CMS\Core\Information\Typo3Version;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Core\Utility\VersionNumberUtility;
-use TYPO3\CMS\Extbase\Mvc\Request;
-use TYPO3\CMS\Extensionmanager\Controller\UpdateFromTerController;
+use TYPO3\CMS\Extensionmanager\Remote\RemoteRegistry;
 
 /**
  * Class ExtensionImport
@@ -135,22 +133,17 @@ class ExtensionImport extends BaseImport
      */
     protected function updateExtensionList(): bool
     {
-        if (GeneralUtility::makeInstance(Typo3Version::class)->getMajorVersion() == 10) {
-            return GeneralUtility::makeInstance('TYPO3\CMS\Extensionmanager\Utility\Repository\Helper')->updateExtList();
-        } else {
-            /** @var Request $request */
-            $request = GeneralUtility::makeInstance(Request::class);
-            /** @var UpdateFromTerController $controller */
-            $controller = GeneralUtility::makeInstance(UpdateFromTerController::class);
-            $jsonResponse = $controller->processRequest(
-                $request
-                    ->withControllerActionName('updateExtensionListFromTer')
-                    ->withArgument('forceUpdateCheck', true)
-            );
-            $result = json_decode($jsonResponse->getBody(), true);
+        $updated = false;
 
-            return $result['updated'];
+        $remoteRegistry = GeneralUtility::makeInstance(RemoteRegistry::class);
+        foreach ($remoteRegistry->getListableRemotes() as $remote) {
+            $remoteUpdate = $remote->getAvailablePackages();
+            if ($remoteUpdate) {
+                $updated = true;
+            }
         }
+
+        return $updated;
     }
 
     /**
