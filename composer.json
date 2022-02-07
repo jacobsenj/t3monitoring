@@ -9,7 +9,8 @@
     "ext-json": "*",
     "typo3/cms-core": "^10 || ^11",
     "typo3/cms-backend": "^10 || ^11",
-    "typo3/cms-extbase": "^10 || ^11"
+    "typo3/cms-extbase": "^10 || ^11",
+    "typo3/cms-extensionmanager": "^10 || ^11"
   },
   "require-dev": {
     "typo3/minimal": "^11",
