@@ -13,9 +13,6 @@ return [
         'searchFields' => 'title,domain,secret,email,php_version,mysql_version,disk_total_space,disk_free_space,insecure_core,outdated_core,insecure_extensions,outdated_extensions,error_message,extensions,core,sla,tag',
         'iconfile' => 'EXT:t3monitoring/Resources/Public/Icons/tx_t3monitoring_domain_model_client.svg'
     ],
-    'interface' => [
-        'showRecordFieldList' => 'hidden, title, domain, secret, basic_auth_username, basic_auth_password, host_header, ignore_cert_errors, exclude_from_import, force_ip_resolve, php_version, mysql_version, disk_total_space, disk_free_space, insecure_core, outdated_core, insecure_extensions, outdated_extensions, error_message, extensions, core, sla, tag',
-    ],
     'types' => [
         1 => [
             'showitem' => '
@@ -146,7 +143,6 @@ return [
         'tag' => [
             'label' => 'LLL:EXT:t3monitoring/Resources/Private/Language/locallang.xlf:tx_t3monitoring_domain_model_client.tag',
             'config' => [
-                'enableMultiSelectFilterTextfield' => 1,
                 'type' => 'select',
                 'default' => '',
                 'renderType' => 'selectMultipleSideBySide',
