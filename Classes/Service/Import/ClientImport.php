@@ -119,8 +119,8 @@ class ClientImport extends BaseImport
                 'error_message' => '',
                 'php_version' => $json['core']['phpVersion'],
                 'mysql_version' => $json['core']['mysqlClientVersion'],
-                'disk_total_space' => $json['core']['diskTotalSpace'] ?: 0,
-                'disk_free_space' => $json['core']['diskFreeSpace'] ?: 0,
+                'disk_total_space' => $json['core']['diskTotalSpace'] ?? 0,
+                'disk_free_space' => $json['core']['diskFreeSpace'] ?? 0,
                 'core' => $this->getUsedCore($json['core']['typo3Version']),
                 'extensions' => $this->handleExtensionRelations($row['uid'], (array)$json['extensions']),
                 'error_count' => 0
@@ -150,7 +150,7 @@ class ClientImport extends BaseImport
     protected function addExtraData(array $json, array &$update, $field)
     {
         $dbField = 'extra_' . $field;
-        if (isset($json['extra']) && is_array($json['extra'][$field])) {
+        if (is_array($json['extra'][$field] ?? false)) {
             $update[$dbField] = json_encode($json['extra'][$field]);
         } else {
             $update[$dbField] = '';
