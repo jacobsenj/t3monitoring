@@ -308,7 +308,7 @@ class ClientImport extends BaseImport
                 $client,
                 $relationId,
                 ($data['title']) ?: 'extension has no title',
-                array_search($data['state'], Extension::$defaultStates, true) ?: key(array_slice(Extension::$defaultStates, -1, 1, true)),
+                array_search($data['state'] ?? null, Extension::$defaultStates, true) ?: key(array_slice(Extension::$defaultStates, -1, 1, true)),
                 $data['isLoaded'],
             ];
 
