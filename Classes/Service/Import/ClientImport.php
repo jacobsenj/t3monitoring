@@ -272,6 +272,9 @@ class ClientImport extends BaseImport
                 }
             }
 
+            $state = array_search($data['state'] ?? null, Extension::$defaultStates, true) ?: key(array_slice(Extension::$defaultStates, -1, 1, true));
+            $title = empty($data['title']) ? 'extension has no title' : $data['title'];
+
             if ($found) {
                 $relationId = $found['uid'];
             } else {
@@ -285,10 +288,10 @@ class ClientImport extends BaseImport
                     'version_integer' => VersionNumberUtility::convertVersionNumberToInteger($data['version']),
                     'major_version' => (int)$versionSplit[0],
                     'minor_version' => (int)$versionSplit[1],
-                    'title' => (string)$data['title'],
-                    'description' => (string)$data['description'],
-                    'author_name' => (string)$data['author'],
-                    'state' => array_search($data['state'], Extension::$defaultStates, true) ?: key(array_slice(Extension::$defaultStates, -1, 1, true)),
+                    'title' => $title,
+                    'description' => $data['description'] ?? '',
+                    'author_name' => $data['author'] ?? '',
+                    'state' => $state,
                     'category' => (int)array_search($data['category'], Extension::$defaultCategories),
                     'is_official' => 0,
                     'tstamp' => $GLOBALS['EXEC_TIME'],
@@ -307,8 +310,8 @@ class ClientImport extends BaseImport
             $relationsToBeAdded[] = [
                 $client,
                 $relationId,
-                ($data['title']) ?: 'extension has no title',
-                array_search($data['state'] ?? null, Extension::$defaultStates, true) ?: key(array_slice(Extension::$defaultStates, -1, 1, true)),
+                $title,
+                $state,
                 $data['isLoaded'],
             ];
 
