@@ -299,7 +299,7 @@ class ClientImport extends BaseImport
                     'update_comment' => '',
                 ];
 
-                if ($data['constraints'] !== null) {
+                if ($data['constraints'] ?? null) {
                     $insert['serialized_dependencies'] = $this->serializeDependencies($data['constraints']);
                 }
 
