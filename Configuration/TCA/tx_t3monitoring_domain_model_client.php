@@ -5,10 +5,12 @@ return [
         'label' => 'title',
         'tstamp' => 'tstamp',
         'crdate' => 'crdate',
-        'cruser_id' => 'cruser_id',
         'delete' => 'deleted',
         'enablecolumns' => [
             'disabled' => 'hidden',
+        ],
+        'security' => [
+            'ignorePageTypeRestriction' => true,
         ],
         'searchFields' => 'title,domain,comment,secret,email,php_version,mysql_version,disk_total_space,disk_free_space,insecure_core,outdated_core,insecure_extensions,outdated_extensions,error_message,extensions,core,sla,tag',
         'iconfile' => 'EXT:t3monitoring/Resources/Public/Icons/tx_t3monitoring_domain_model_client.svg'
@@ -45,8 +47,9 @@ return [
             'config' => [
                 'type' => 'input',
                 'size' => 30,
-                'eval' => 'trim,required',
-                'max' => 255
+                'eval' => 'trim',
+                'required' => true,
+                'max' => 255,
             ],
         ],
         'domain' => [
@@ -54,7 +57,8 @@ return [
             'config' => [
                 'type' => 'input',
                 'size' => 50,
-                'eval' => 'trim,required',
+                'eval' => 'trim',
+                'required' => true,
                 'placeholder' => 'http://yourdomain.com/'
             ],
         ],
@@ -72,7 +76,8 @@ return [
             'config' => [
                 'type' => 'input',
                 'size' => 50,
-                'eval' => 'trim,required',
+                'eval' => 'trim',
+                'required' => true,
                 'min' => 5,
                 'max' => 255
             ],
@@ -90,7 +95,7 @@ return [
             'config' => [
                 'type' => 'input',
                 'size' => 30,
-                'eval' => 'trim,password'
+                'eval' => 'trim'
             ],
         ],
         'host_header' => [
@@ -120,9 +125,9 @@ return [
                 'type' => 'select',
                 'renderType' => 'selectSingle',
                 'items' => [
-                    ['', ''],
-                    ['IPv4', 'v4'],
-                    ['IPv6', 'v6'],
+                    ['label' => '', 'value' => ''],
+                    ['label' => 'IPv4', 'value' => 'v4'],
+                    ['label' => 'IPv6', 'value' => 'v6'],
                 ],
                 'default' => '',
             ],
@@ -145,7 +150,7 @@ return [
                 'minitems' => 0,
                 'default' => 0,
                 'items' => [
-                    ['', 0]
+                    ['label' => '', 'value' => 0]
                 ]
             ],
         ],
@@ -182,18 +187,16 @@ return [
             'label' => 'LLL:EXT:t3monitoring/Resources/Private/Language/locallang.xlf:tx_t3monitoring_domain_model_client.disk_total_space',
             'config' => [
                 'readOnly' => true,
-                'type' => 'input',
+                'type' => 'number',
                 'size' => 5,
-                'eval' => 'int'
             ],
         ],
         'disk_free_space' => [
             'label' => 'LLL:EXT:t3monitoring/Resources/Private/Language/locallang.xlf:tx_t3monitoring_domain_model_client.disk_free_space',
             'config' => [
                 'readOnly' => true,
-                'type' => 'input',
+                'type' => 'number',
                 'size' => 5,
-                'eval' => 'int'
             ],
         ],
         'insecure_core' => [
@@ -216,18 +219,16 @@ return [
             'label' => 'LLL:EXT:t3monitoring/Resources/Private/Language/locallang.xlf:tx_t3monitoring_domain_model_client.insecure_extensions',
             'config' => [
                 'readOnly' => true,
-                'type' => 'input',
+                'type' => 'number',
                 'size' => 4,
-                'eval' => 'int'
             ],
         ],
         'outdated_extensions' => [
             'label' => 'LLL:EXT:t3monitoring/Resources/Private/Language/locallang.xlf:tx_t3monitoring_domain_model_client.outdated_extensions',
             'config' => [
                 'readOnly' => true,
-                'type' => 'input',
+                'type' => 'number',
                 'size' => 4,
-                'eval' => 'int'
             ],
         ],
         'error_message' => [
@@ -274,9 +275,7 @@ return [
             'label' => 'LLL:EXT:t3monitoring/Resources/Private/Language/locallang.xlf:tx_t3monitoring_domain_model_client.last_successful_import',
             'config' => [
                 'readOnly' => true,
-                'type' => 'input',
-                'renderType' => 'inputDateTime',
-                'eval' => 'datetime',
+                'type' => 'datetime',
                 'default' => 0,
                 'size' => 10,
             ],
@@ -286,7 +285,6 @@ return [
             'config' => [
                 'readOnly' => true,
                 'type' => 'group',
-                'internal_type' => 'db',
                 'allowed' => 'tx_t3monitoring_domain_model_extension',
                 'foreign_table' => 'tx_t3monitoring_domain_model_extension',
                 'foreign_table_where' => 'ORDER BY tx_t3monitoring_domain_model_extension.name',

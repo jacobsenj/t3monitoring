@@ -5,8 +5,8 @@ return [
         'label' => 'version',
         'tstamp' => 'tstamp',
         'crdate' => 'crdate',
-        'cruser_id' => 'cruser_id',
-        'enablecolumns' => [
+        'security' => [
+            'ignorePageTypeRestriction' => true,
         ],
         'searchFields' => 'version,insecure,next_secure_version,type,release_date,latest,stable,is_stable,is_active,is_latest,version_integer,is_used,is_official,',
         'iconfile' => 'EXT:t3monitoring/Resources/Public/Icons/tx_t3monitoring_domain_model_core.svg'
@@ -50,10 +50,10 @@ return [
                 'type' => 'select',
                 'renderType' => 'selectSingle',
                 'items' => [
-                    ['LLL:EXT:t3monitoring/Resources/Private/Language/locallang.xlf:tx_t3monitoring_domain_model_core.type.0', 0],
-                    ['LLL:EXT:t3monitoring/Resources/Private/Language/locallang.xlf:tx_t3monitoring_domain_model_core.type.1', 1],
-                    ['LLL:EXT:t3monitoring/Resources/Private/Language/locallang.xlf:tx_t3monitoring_domain_model_core.type.2', 2],
-                    ['LLL:EXT:t3monitoring/Resources/Private/Language/locallang.xlf:tx_t3monitoring_domain_model_core.type.4', 4],
+                    ['label' => 'LLL:EXT:t3monitoring/Resources/Private/Language/locallang.xlf:tx_t3monitoring_domain_model_core.type.0', 'value' => 0],
+                    ['label' => 'LLL:EXT:t3monitoring/Resources/Private/Language/locallang.xlf:tx_t3monitoring_domain_model_core.type.1', 'value' => 1],
+                    ['label' => 'LLL:EXT:t3monitoring/Resources/Private/Language/locallang.xlf:tx_t3monitoring_domain_model_core.type.2', 'value' => 2],
+                    ['label' => 'LLL:EXT:t3monitoring/Resources/Private/Language/locallang.xlf:tx_t3monitoring_domain_model_core.type.4', 'value' => 4],
                 ],
                 'default' => 0,
             ],
@@ -62,9 +62,7 @@ return [
             'label' => 'LLL:EXT:t3monitoring/Resources/Private/Language/locallang.xlf:tx_t3monitoring_domain_model_core.release_date',
             'config' => [
                 'dbType' => 'datetime',
-                'type' => 'input',
-                'renderType' => 'inputDateTime',
-                'eval' => 'datetime',
+                'type' => 'datetime',
             ],
         ],
         'latest' => [
@@ -107,9 +105,8 @@ return [
         'version_integer' => [
             'label' => 'LLL:EXT:t3monitoring/Resources/Private/Language/locallang.xlf:tx_t3monitoring_domain_model_core.version_integer',
             'config' => [
-                'type' => 'input',
+                'type' => 'number',
                 'size' => 4,
-                'eval' => 'int'
             ],
         ],
         'is_used' => [

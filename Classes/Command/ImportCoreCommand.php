@@ -1,4 +1,7 @@
 <?php
+
+declare(strict_types=1);
+
 namespace T3Monitor\T3monitoring\Command;
 
 /*
@@ -14,31 +17,16 @@ use Symfony\Component\Console\Output\OutputInterface;
 use T3Monitor\T3monitoring\Service\Import\CoreImport;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
-/**
- * Monitoring command controller
- */
 class ImportCoreCommand extends Command
 {
-
-    /**
-     * Configure the command by defining the name, options and arguments
-     */
-    protected function configure()
+    protected function configure(): void
     {
         $this->setDescription('Import core');
     }
 
-    /**
-     * Executes the command for adding the lock file
-     *
-     * @param InputInterface $input
-     * @param OutputInterface $output
-     * @throws \Doctrine\DBAL\ConnectionException
-     * @throws \TYPO3\CMS\Extbase\Object\Exception
-     */
-    protected function execute(InputInterface $input, OutputInterface $output)
+    protected function execute(InputInterface $input, OutputInterface $output): int
     {
         GeneralUtility::makeInstance(CoreImport::class)->run();
-        return 0;
+        return Command::SUCCESS;
     }
 }

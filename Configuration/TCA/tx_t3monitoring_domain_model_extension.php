@@ -8,16 +8,14 @@ return [
         'hideTable' => true,
         'tstamp' => 'tstamp',
         'crdate' => 'crdate',
-        'cruser_id' => 'cruser_id',
-        'enablecolumns' => [],
+        'security' => [
+            'ignorePageTypeRestriction' => true,
+        ],
         'searchFields' => 'name,version,insecure,next_secure_version,title,description,last_updated,author_name,update_comment,state,category,version_integer,is_used,is_official,is_modified,is_latest,last_bugfix_release,last_minor_release,last_major_release,serialized_dependencies,',
         'iconfile' => 'EXT:t3monitoring/Resources/Public/Icons/tx_t3monitoring_domain_model_extension.svg'
     ],
     'types' => [
         1 => ['showitem' => 'name, version, insecure, next_secure_version, title, description, last_updated, author_name, update_comment, state, category, version_integer, is_used, is_official, is_modified, is_latest,last_bugfix_release, last_minor_release, last_major_release, typo3_min_version,typo3_max_version,serialized_dependencies'],
-    ],
-    'palettes' => [
-        1 => ['showitem' => ''],
     ],
     'columns' => [
         'name' => [
@@ -25,7 +23,8 @@ return [
             'config' => [
                 'type' => 'input',
                 'size' => 30,
-                'eval' => 'trim,required'
+                'eval' => 'trim',
+                'required' => true,
             ],
         ],
         'version' => [
@@ -71,10 +70,8 @@ return [
         'last_updated' => [
             'label' => 'LLL:EXT:t3monitoring/Resources/Private/Language/locallang.xlf:tx_t3monitoring_domain_model_extension.last_updated',
             'config' => [
-                'type' => 'input',
+                'type' => 'datetime',
                 'dbType' => 'datetime',
-                'renderType' => 'inputDateTime',
-                'eval' => 'datetime',
             ],
         ],
         'author_name' => [
@@ -100,7 +97,7 @@ return [
                 'type' => 'select',
                 'renderType' => 'selectSingle',
                 'items' => [
-                    ['-- Label --', 0],
+                    ['label' => '-- Label --', 'value' => 0],
                 ],
             ],
         ],
@@ -110,16 +107,15 @@ return [
                 'type' => 'select',
                 'renderType' => 'selectSingle',
                 'items' => [
-                    ['-- Label --', 0],
+                    ['label' => '-- Label --', 'value' => 0],
                 ],
             ],
         ],
         'version_integer' => [
             'label' => 'LLL:EXT:t3monitoring/Resources/Private/Language/locallang.xlf:tx_t3monitoring_domain_model_extension.version_integer',
             'config' => [
-                'type' => 'input',
+                'type' => 'number',
                 'size' => 4,
-                'eval' => 'int'
             ],
         ],
         'is_used' => [

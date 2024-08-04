@@ -5,11 +5,13 @@ return [
         'label' => 'title',
         'tstamp' => 'tstamp',
         'crdate' => 'crdate',
-        'cruser_id' => 'cruser_id',
         'sortby' => 'sorting',
         'delete' => 'deleted',
         'enablecolumns' => [
             'disabled' => 'hidden',
+        ],
+        'security' => [
+            'ignorePageTypeRestriction' => true,
         ],
         'searchFields' => 'title,description,',
         'iconfile' => 'EXT:t3monitoring/Resources/Public/Icons/tx_t3monitoring_domain_model_sla.svg'
@@ -33,7 +35,8 @@ return [
             'config' => [
                 'type' => 'input',
                 'size' => 30,
-                'eval' => 'trim,required'
+                'eval' => 'trim',
+                'required' => true,
             ],
         ],
         'description' => [

@@ -1,48 +1,48 @@
 {
-  "name": "t3monitor/t3monitoring",
-  "type": "typo3-cms-extension",
-  "description": "T3monitoring service",
-  "license": [
-    "GPL-2.0-or-later"
-  ],
-  "require": {
-    "ext-json": "*",
-    "typo3/cms-core": "^10 || ^11",
-    "typo3/cms-backend": "^10 || ^11",
-    "typo3/cms-extbase": "^10 || ^11",
-    "typo3/cms-extensionmanager": "^10 || ^11"
-  },
-  "require-dev": {
-    "typo3/minimal": "^11",
-    "typo3/testing-framework": "*"
-  },
-  "autoload": {
-    "psr-4": {
-      "T3Monitor\\T3monitoring\\": "Classes"
-    }
-  },
-  "autoload-dev": {
-    "psr-4": {
-      "T3Monitor\\T3monitoring\\Tests\\": "Tests",
-      "TYPO3\\CMS\\Core\\Tests\\": ".Build/vendor/typo3/cms/typo3/sysext/core/Tests/",
-      "TYPO3\\CMS\\Fluid\\Tests\\": ".Build/vendor/typo3/cms/typo3/sysext/fluid/Tests/"
-    }
-  },
-  "config": {
-    "vendor-dir": ".Build/vendor",
-    "bin-dir": ".Build/bin"
-  },
-  "scripts": {
-    "post-autoload-dump": [
-      "mkdir -p .Build/Web/typo3conf/ext/",
-      "[ -L .Build/Web/typo3conf/ext/t3monitoring ] || ln -snvf ../../../../. .Build/Web/typo3conf/ext/t3monitoring"
-    ]
-  },
-  "extra": {
-    "typo3/cms": {
-      "cms-package-dir": "{$vendor-dir}/typo3/cms",
-      "web-dir": ".Build/Web",
-      "extension-key": "t3monitoring"
-    }
-  }
+	"name": "t3monitor/t3monitoring",
+	"type": "typo3-cms-extension",
+	"description": "T3monitoring service",
+	"license": [
+		"GPL-2.0-or-later"
+	],
+	"require": {
+		"php": "^8.2",
+		"ext-json": "*",
+		"ext-dom": "*",
+		"typo3/cms-core": "^12",
+		"typo3/cms-backend": "^12",
+		"typo3/cms-extbase": "^12",
+		"typo3/cms-extensionmanager": "^12"
+	},
+	"require-dev": {
+		"typo3/minimal": "^12",
+		"typo3/testing-framework": "*"
+	},
+	"autoload": {
+		"psr-4": {
+			"T3Monitor\\T3monitoring\\": "Classes"
+		}
+	},
+	"autoload-dev": {
+		"psr-4": {
+			"T3Monitor\\T3monitoring\\Tests\\": "Tests"
+		}
+	},
+	"config": {
+		"vendor-dir": ".Build/vendor",
+		"bin-dir": ".Build/bin",
+		"allow-plugins": {
+			"typo3/class-alias-loader": true,
+			"typo3/cms-composer-installers": true
+		}
+	},
+	"extra": {
+		"typo3/cms": {
+			"web-dir": ".Build/web",
+			"extension-key": "t3monitoring"
+		},
+		"branch-alias": {
+			"dev-core-v12": "3.x-dev"
+		}
+	}
 }
